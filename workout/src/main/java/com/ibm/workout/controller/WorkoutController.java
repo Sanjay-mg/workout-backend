@@ -1,5 +1,6 @@
 package com.ibm.workout.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import com.ibm.workout.Service.WorkoutService;
 import com.ibm.workout.entity.Workout;
@@ -34,7 +36,7 @@ public class WorkoutController {
 	 */
 	@PostMapping("/workout")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	String createCategory(@RequestBody @Valid Workout workout, BindingResult bindingResult) {
+	String createWorkout(@RequestBody @Valid Workout workout, BindingResult bindingResult) {
 		validateModel(bindingResult);
 		return workoutService.createWorkout(workout);
 	}
@@ -53,6 +55,10 @@ public class WorkoutController {
 	@GetMapping("/workout")
 	List<Workout> getWorkouts() {
 		return workoutService.getWorkouts();
+	}
+	@GetMapping("/workout/{date}")
+	List<Workout> getBugByDate(@PathVariable("date") Date bugdate) {
+		return workoutService.getWorkoutByDate(bugdate);
 	}
 
 	/**

@@ -1,5 +1,6 @@
 package com.ibm.workout.Service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,9 @@ public class WorkoutService {
 
 	public void deleteWorkout(String workoutId) {
 		workoutRepository.deleteById(workoutId);
+	}
+
+	public List<Workout> getWorkoutByDate(Date bugdate) {
+			return workoutRepository.findByDate(bugdate);
 	}
 }
