@@ -32,6 +32,15 @@ public class WorkoutService {
 	}
 
 	public List<Workout> getWorkoutByDate(Date startDateTime) {
-			return workoutRepository.findByDate(startDateTime);
+		Date endDate = new Date();
+		endDate.setDate(startDateTime.getDate());
+		endDate.setMonth(startDateTime.getMonth());
+		endDate.setYear(startDateTime.getYear());
+		endDate.setHours(23);
+		endDate.setMinutes(59);
+		endDate.setSeconds(59);
+		System.out.println(endDate);
+		return workoutRepository.findAllByStartDateTimeBetween(startDateTime,endDate);
 	}
+
 }
