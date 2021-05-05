@@ -24,7 +24,13 @@ import com.ibm.workout.entity.Category;
 public class CategoryController {
 	@Autowired
 	CategoryService categoryService;
-
+	
+	/**
+	 * Used to create the category record
+	 * @param category
+	 * @param bindingResult
+	 * @return Id of created category
+	 */
 	@PostMapping("/category")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	String createCategory(@RequestBody @Valid Category category, BindingResult bindingResult) {
@@ -38,11 +44,21 @@ public class CategoryController {
 		}
 	}
 
+	/**
+	 * Used to get all the categories in database
+	 * @return list of categories
+	 */
 	@GetMapping("/category")
 	List<Category> getCategories() {
 		return categoryService.getCategories();
 	}
 
+	/**
+	 * Used to update category
+	 * @param category
+	 * @param bindingResult
+	 * @param categoryId
+	 */
 	@PutMapping("/category/{id}")
 	void updateCategory(@RequestBody @Valid Category category, BindingResult bindingResult,
 			@PathVariable("id") String categoryId) {
@@ -51,6 +67,10 @@ public class CategoryController {
 		categoryService.updateCategory(category);
 	}
 
+	/**
+	 * Used to delete category
+	 * @param categoryId
+	 */
 	@DeleteMapping("/category/{id}")
 	void deleteCategory(@PathVariable("id") String categoryId) {
 		categoryService.deleteCategory(categoryId);

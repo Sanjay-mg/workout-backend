@@ -2,8 +2,6 @@ package com.ibm.workout.Service;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +14,14 @@ public class CategoryService {
 	CategoryRepository categoryRepository;
 
 	public String createCategory(Category category) {
-		Category savedCategory = categoryRepository.save(category);
-		return savedCategory.getId();
+		String title = category.getTitle();
+		List<Category> result = categoryRepository.getByTitleIgnoreCase(title);
+		if (result.isEmpty()) {
+			Category savedCategory = categoryRepository.save(category);
+			return savedCategory.getId();
+		} else {
+			throw new IllegalArgumentException("Category already Exists");
+		}
 	}
 
 	public List<Category> getCategories() {
@@ -25,11 +29,17 @@ public class CategoryService {
 	}
 
 	public void updateCategory(Category category) {
-		categoryRepository.save(category);
+		String title = category.getTitle();
+		List<Category> result = categoryRepository.getByTitleIgnoreCase(title);
+		if (result.isEmpty()) {
+			categoryRepository.save(category);
+		} else {
+			throw new IllegalArgumentException("Category already Exists");
+		}
 	}
 
 	public void deleteCategory(String categoryId) {
 		categoryRepository.deleteById(categoryId);
 	}
-	
+
 }
