@@ -17,26 +17,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ibm.workout.Service.CategoryService;
-import com.ibm.workout.entity.Category;
+import com.ibm.workout.Service.WorkoutService;
+import com.ibm.workout.entity.Workout;
 
 @RestController
-public class CategoryController {
+public class WorkoutController {
 	@Autowired
-	CategoryService categoryService;
+	WorkoutService workoutService;
 
 	/**
-	 * Used to create the category record
+	 * Used to create workout record
 	 * 
-	 * @param category
+	 * @param workout
 	 * @param bindingResult
-	 * @return Id of created category
+	 * @return Id of the created record
 	 */
-	@PostMapping("/category")
+	@PostMapping("/workout")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	String createCategory(@RequestBody @Valid Category category, BindingResult bindingResult) {
+	String createCategory(@RequestBody @Valid Workout workout, BindingResult bindingResult) {
 		validateModel(bindingResult);
-		return categoryService.createCategory(category);
+		return workoutService.createWorkout(workout);
 	}
 
 	private void validateModel(Errors bindingResult) {
@@ -46,37 +46,37 @@ public class CategoryController {
 	}
 
 	/**
-	 * Used to get all the categories in database
+	 * Used to get all workout records in database
 	 * 
-	 * @return list of categories
+	 * @return list of all workouts
 	 */
-	@GetMapping("/category")
-	List<Category> getCategories() {
-		return categoryService.getCategories();
+	@GetMapping("/workout")
+	List<Workout> getWorkouts() {
+		return workoutService.getWorkouts();
 	}
 
 	/**
-	 * Used to update category
+	 * Used to update workout record
 	 * 
-	 * @param category
+	 * @param workout
 	 * @param bindingResult
-	 * @param categoryId
+	 * @param workoutId
 	 */
-	@PutMapping("/category/{id}")
-	void updateCategory(@RequestBody @Valid Category category, BindingResult bindingResult,
-			@PathVariable("id") String categoryId) {
+	@PutMapping("/workout/{id}")
+	void updateWorkout(@RequestBody @Valid Workout workout, BindingResult bindingResult,
+			@PathVariable("id") String workoutId) {
 		validateModel(bindingResult);
-		category.setId(categoryId);
-		categoryService.updateCategory(category);
+		workout.setId(workoutId);
+		workoutService.updateWorkout(workout);
 	}
 
 	/**
-	 * Used to delete category
+	 * Used to delete a workout record
 	 * 
-	 * @param categoryId
+	 * @param workoutId
 	 */
-	@DeleteMapping("/category/{id}")
-	void deleteCategory(@PathVariable("id") String categoryId) {
-		categoryService.deleteCategory(categoryId);
+	@DeleteMapping("/workout/{id}")
+	void deleteWorkout(@PathVariable("id") String workoutId) {
+		workoutService.deleteWorkout(workoutId);
 	}
 }
