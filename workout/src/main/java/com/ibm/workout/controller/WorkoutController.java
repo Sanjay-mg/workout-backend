@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.ibm.workout.Service.CustomIllegalArgumentException;
 import com.ibm.workout.Service.WorkoutService;
 import com.ibm.workout.entity.Workout;
 
@@ -43,7 +44,7 @@ public class WorkoutController {
 
 	private void validateModel(Errors bindingResult) {
 		if (bindingResult.hasErrors()) {
-			throw new IllegalArgumentException("Something went wrong. Please retry");
+			throw new CustomIllegalArgumentException("Something went wrong. Please retry");
 		}
 	}
 
@@ -57,7 +58,7 @@ public class WorkoutController {
 		return workoutService.getWorkouts();
 	}
 	@GetMapping("/workout/{date}")
-	List<Workout> getBugByDate(@PathVariable("date") Date startDateTime) {
+	List<Workout> getWorkoutsByDate(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDateTime) {
 		return workoutService.getWorkoutByDate(startDateTime);
 	}
 

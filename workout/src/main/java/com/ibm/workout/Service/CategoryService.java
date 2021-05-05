@@ -20,7 +20,7 @@ public class CategoryService {
 			Category savedCategory = categoryRepository.save(category);
 			return savedCategory.getId();
 		} else {
-			throw new IllegalArgumentException("Category already Exists");
+			throw new CustomIllegalArgumentException("Category already Exists");
 		}
 	}
 
@@ -34,7 +34,7 @@ public class CategoryService {
 		if (result.isEmpty()) {
 			categoryRepository.save(category);
 		} else {
-			throw new IllegalArgumentException("Category already Exists");
+			throw new CustomIllegalArgumentException("Category already Exists");
 		}
 	}
 
