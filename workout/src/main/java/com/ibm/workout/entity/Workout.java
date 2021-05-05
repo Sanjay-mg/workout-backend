@@ -1,12 +1,16 @@
 package com.ibm.workout.entity;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.data.annotation.Id;
+
 public class Workout {
+	@Id
+	private String id;
 	@NotNull @NotBlank
 	@Size(max=100)
 	private String title;
@@ -14,13 +18,19 @@ public class Workout {
 	private String note;
 	@NotNull
 	private float caloriesBurnt;
-	private LocalDateTime startDateTime;
-	private LocalDateTime endDateTime;
+	private Date startDateTime;
+	private Date endDateTime;
 	@Size(max=100)
 	private String comment;
 	private String category;
 	private STATUS status;
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -39,16 +49,16 @@ public class Workout {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public LocalDateTime getEndDateTime() {
+	public Date getEndDateTime() {
 		return endDateTime;
 	}
-	public void setEndDateTime(LocalDateTime endDateTime) {
+	public void setEndDateTime(Date endDateTime) {
 		this.endDateTime = endDateTime;
 	}
-	public LocalDateTime getStartDateTime() {
+	public Date getStartDateTime() {
 		return startDateTime;
 	}
-	public void setStartDateTime(LocalDateTime startDateTime) {
+	public void setStartDateTime(Date startDateTime) {
 		this.startDateTime = startDateTime;
 	}
 	public String getComment() {
@@ -57,10 +67,10 @@ public class Workout {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public Category getCategory() {
+	public String getCategory() {
 		return category;
 	}
-	public void setCategory(Category category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 	public STATUS getStatus() {
