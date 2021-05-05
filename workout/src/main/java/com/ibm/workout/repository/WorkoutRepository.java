@@ -10,6 +10,6 @@ import com.ibm.workout.entity.Workout;
 
 public interface WorkoutRepository extends MongoRepository<Workout, String>{
 	@Query("{'startDateTime':?0}")
-	List<Workout> findByDate(Date bugdate);
+	List<Workout> findByDate(Date startDateTime);
 
 }

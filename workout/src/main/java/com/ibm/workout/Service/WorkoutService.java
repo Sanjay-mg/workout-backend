@@ -31,7 +31,7 @@ public class WorkoutService {
 		workoutRepository.deleteById(workoutId);
 	}
 
-	public List<Workout> getWorkoutByDate(Date bugdate) {
-			return workoutRepository.findByDate(bugdate);
+	public List<Workout> getWorkoutByDate(Date startDateTime) {
+			return workoutRepository.findByDate(startDateTime);
 	}
 }

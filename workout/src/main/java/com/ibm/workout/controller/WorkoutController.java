@@ -57,8 +57,8 @@ public class WorkoutController {
 		return workoutService.getWorkouts();
 	}
 	@GetMapping("/workout/{date}")
-	List<Workout> getBugByDate(@PathVariable("date") Date bugdate) {
-		return workoutService.getWorkoutByDate(bugdate);
+	List<Workout> getBugByDate(@PathVariable("date") Date startDateTime) {
+		return workoutService.getWorkoutByDate(startDateTime);
 	}
 
 	/**
