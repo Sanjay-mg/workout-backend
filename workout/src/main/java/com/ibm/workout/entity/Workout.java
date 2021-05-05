@@ -18,7 +18,7 @@ public class Workout {
 	private LocalDateTime endDateTime;
 	@Size(max=100)
 	private String comment;
-	private Category category;
+	private String category;
 	private STATUS status;
 	
 	public String getTitle() {
