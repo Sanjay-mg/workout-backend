@@ -39,8 +39,6 @@ public class WorkoutService {
 		endDate.setHours(23);
 		endDate.setMinutes(59);
 		endDate.setSeconds(59);
-		System.out.println(endDate);
-		return workoutRepository.findAllByStartDateTimeBetween(startDateTime,endDate);
+		return workoutRepository.findByStartDateTimeBetween(startDateTime,endDate);
 	}
-
 }

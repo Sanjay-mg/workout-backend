@@ -8,6 +8,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import com.ibm.workout.entity.Workout;
 
 public interface WorkoutRepository extends MongoRepository<Workout, String>{
-	List<Workout> findAllByStartDateTimeBetween(Date startDateTime, Date endDate);
-
-}
+	List<Workout> findByStartDateTimeBetween(Date startDateTime, Date endDate);
+	List<Workout> findByCategoryIgnoreCase(String category);
+}	

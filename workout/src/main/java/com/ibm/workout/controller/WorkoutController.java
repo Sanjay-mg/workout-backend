@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import com.ibm.workout.Service.CustomIllegalArgumentException;
 import com.ibm.workout.Service.WorkoutService;
 import com.ibm.workout.entity.Workout;
 
+@CrossOrigin
 @RestController
 public class WorkoutController {
 	@Autowired
@@ -57,8 +59,10 @@ public class WorkoutController {
 	List<Workout> getWorkouts() {
 		return workoutService.getWorkouts();
 	}
+
 	@GetMapping("/workout/{date}")
-	List<Workout> getWorkoutsByDate(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDateTime) {
+	List<Workout> getWorkoutsByDate(
+			@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") Date startDateTime) {
 		return workoutService.getWorkoutByDate(startDateTime);
 	}
 
