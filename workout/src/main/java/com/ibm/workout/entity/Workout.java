@@ -8,6 +8,8 @@ import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 
+import com.ibm.workout.Service.CustomIllegalArgumentException;
+
 public class Workout {
 	@Id
 	private String id;
@@ -21,7 +23,7 @@ public class Workout {
 	private float caloriesBurnt;
 	private Date startDateTime;
 	private Date endDateTime;
-	@Size(max=100)
+	@Size(min=5,max=100)
 	private String comment;
 	@NotNull @NotBlank
 	private String category;
@@ -55,12 +57,18 @@ public class Workout {
 		return endDateTime;
 	}
 	public void setEndDateTime(Date endDateTime) {
+		if(endDateTime.compareTo(new Date())<0) {
+			throw new CustomIllegalArgumentException("End Date cannot be a past date");
+		}
 		this.endDateTime = endDateTime;
 	}
 	public Date getStartDateTime() {
 		return startDateTime;
 	}
 	public void setStartDateTime(Date startDateTime) {
+		if(startDateTime.compareTo(new Date())<0) {
+			throw new CustomIllegalArgumentException("Start Date cannot be a past date");
+		}
 		this.startDateTime = startDateTime;
 	}
 	public String getComment() {
