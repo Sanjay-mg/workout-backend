@@ -14,6 +14,7 @@ public class Workout {
 	@NotNull @NotBlank
 	@Size(max=100)
 	private String title;
+	@NotNull @NotBlank
 	@Size(min=5, max=500)
 	private String note;
 	@NotNull
@@ -22,6 +23,7 @@ public class Workout {
 	private Date endDateTime;
 	@Size(max=100)
 	private String comment;
+	@NotNull @NotBlank
 	private String category;
 	private STATUS status;
 	
