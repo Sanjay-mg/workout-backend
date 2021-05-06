@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ibm.workout.Service.CustomIllegalArgumentException;
 import com.ibm.workout.Service.WorkoutService;
+import com.ibm.workout.entity.STATUS;
 import com.ibm.workout.entity.Workout;
 
 @CrossOrigin
@@ -60,12 +61,21 @@ public class WorkoutController {
 		return workoutService.getWorkouts();
 	}
 
+	/**
+	 * Used to get record for given day
+	 * @param startDateTime
+	 * @return list of workout for given date
+	 */
 	@GetMapping("/workout/{date}")
 	List<Workout> getWorkoutsByDate(
 			@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") Date startDateTime) {
 		return workoutService.getWorkoutByDate(startDateTime);
 	}
 
+	@GetMapping("/workout/status/{status}")
+	List<Workout> getWorkoutByStatus(@PathVariable("status") STATUS status){
+		return workoutService.getWorkoutByStatus(status);
+	}
 	/**
 	 * Used to update workout record
 	 * 

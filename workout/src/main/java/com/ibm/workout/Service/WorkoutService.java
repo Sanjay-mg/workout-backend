@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ibm.workout.entity.STATUS;
 import com.ibm.workout.entity.Workout;
 import com.ibm.workout.repository.WorkoutRepository;
 
@@ -40,5 +41,9 @@ public class WorkoutService {
 		endDate.setMinutes(59);
 		endDate.setSeconds(59);
 		return workoutRepository.findByStartDateTimeBetween(startDateTime,endDate);
+	}
+
+	public List<Workout> getWorkoutByStatus(STATUS status) {
+		return workoutRepository.findByStatus(status);
 	}
 }
