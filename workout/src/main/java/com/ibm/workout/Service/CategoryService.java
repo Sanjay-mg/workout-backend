@@ -18,6 +18,7 @@ public class CategoryService {
 	@Autowired
 	WorkoutRepository workoutRepository;
 
+	
 	public String createCategory(Category category) {
 		String title = category.getTitle();
 		List<Category> result = categoryRepository.getByTitleIgnoreCase(title);
@@ -55,6 +56,22 @@ public class CategoryService {
 			}
 		}
 		
+	}
+
+	public WorkoutRepository getWorkoutRepository() {
+		return workoutRepository;
+	}
+
+	public void setWorkoutRepository(WorkoutRepository workoutRepository) {
+		this.workoutRepository = workoutRepository;
+	}
+
+	public CategoryRepository getCategoryRepository() {
+		return categoryRepository;
+	}
+
+	public void setCategoryRepository(CategoryRepository categoryRepository) {
+		this.categoryRepository = categoryRepository;
 	}
 
 }
