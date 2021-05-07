@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ibm.workout.Service.CategoryService;
 import com.ibm.workout.entity.Category;
 
-@CrossOrigin
 @RestController
 public class CategoryController {
 	@Autowired
@@ -34,6 +33,7 @@ public class CategoryController {
 	 * @param bindingResult
 	 * @return Id of created category
 	 */
+	@CrossOrigin
 	@PostMapping("/category")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	String createCategory(@RequestBody @Valid Category category, BindingResult bindingResult) {
@@ -52,6 +52,7 @@ public class CategoryController {
 	 * 
 	 * @return list of categories
 	 */
+	@CrossOrigin
 	@GetMapping("/category")
 	List<Category> getCategories() {
 		return categoryService.getCategories();
@@ -64,6 +65,7 @@ public class CategoryController {
 	 * @param bindingResult
 	 * @param categoryId
 	 */
+	@CrossOrigin
 	@PutMapping("/category/{id}")
 	void updateCategory(@RequestBody @Valid Category category, BindingResult bindingResult,
 			@PathVariable("id") String categoryId) {
@@ -77,6 +79,7 @@ public class CategoryController {
 	 * 
 	 * @param categoryId
 	 */
+	@CrossOrigin
 	@DeleteMapping("/category/{id}")
 	void deleteCategory(@PathVariable("id") String categoryId) {
 		categoryService.deleteCategory(categoryId);

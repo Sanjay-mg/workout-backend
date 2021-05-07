@@ -25,7 +25,6 @@ import com.ibm.workout.Service.WorkoutService;
 import com.ibm.workout.entity.STATUS;
 import com.ibm.workout.entity.Workout;
 
-@CrossOrigin
 @RestController
 public class WorkoutController {
 	@Autowired
@@ -38,6 +37,7 @@ public class WorkoutController {
 	 * @param bindingResult
 	 * @return Id of the created record
 	 */
+	@CrossOrigin
 	@PostMapping("/workout")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	String createWorkout(@RequestBody @Valid Workout workout, BindingResult bindingResult) {
@@ -56,6 +56,7 @@ public class WorkoutController {
 	 * 
 	 * @return list of all workouts
 	 */
+	@CrossOrigin
 	@GetMapping("/workout")
 	List<Workout> getWorkouts() {
 		return workoutService.getWorkouts();
@@ -63,19 +64,23 @@ public class WorkoutController {
 
 	/**
 	 * Used to get record for given day
+	 * 
 	 * @param startDateTime
 	 * @return list of workout for given date
 	 */
+	@CrossOrigin
 	@GetMapping("/workout/{date}")
 	List<Workout> getWorkoutsByDate(
 			@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") Date startDateTime) {
 		return workoutService.getWorkoutByDate(startDateTime);
 	}
 
+	@CrossOrigin
 	@GetMapping("/workout/status/{status}")
-	List<Workout> getWorkoutByStatus(@PathVariable("status") STATUS status){
+	List<Workout> getWorkoutByStatus(@PathVariable("status") STATUS status) {
 		return workoutService.getWorkoutByStatus(status);
 	}
+
 	/**
 	 * Used to update workout record
 	 * 
@@ -83,6 +88,7 @@ public class WorkoutController {
 	 * @param bindingResult
 	 * @param workoutId
 	 */
+	@CrossOrigin
 	@PutMapping("/workout/{id}")
 	void updateWorkout(@RequestBody @Valid Workout workout, BindingResult bindingResult,
 			@PathVariable("id") String workoutId) {
@@ -96,6 +102,7 @@ public class WorkoutController {
 	 * 
 	 * @param workoutId
 	 */
+	@CrossOrigin
 	@DeleteMapping("/workout/{id}")
 	void deleteWorkout(@PathVariable("id") String workoutId) {
 		workoutService.deleteWorkout(workoutId);
