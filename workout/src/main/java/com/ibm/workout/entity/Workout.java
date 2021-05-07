@@ -57,11 +57,9 @@ public class Workout {
 		return endDateTime;
 	}
 	public void setEndDateTime(Date endDateTime) {
-		int endHour = endDateTime.getHours();
-		int endMinute = endDateTime.getMinutes();
-		endDateTime.setHours(endHour-5);
-		endDateTime.setMinutes(endMinute-30);
 		Date currentDate = new Date();
+		currentDate.setHours(currentDate.getHours()+5);
+		currentDate.setMinutes(currentDate.getMinutes()+29);
 		if(endDateTime.before(currentDate)) {
 			throw new CustomIllegalArgumentException("End Date and Time cannot be a past value");
 		}
@@ -71,11 +69,9 @@ public class Workout {
 		return startDateTime;
 	}
 	public void setStartDateTime(Date startDateTime) {
-		int startHour = startDateTime.getHours();
-		int startMinute = startDateTime.getMinutes();
-		startDateTime.setHours(startHour-5);
-		startDateTime.setMinutes(startMinute-30);
 		Date currentDate = new Date();
+		currentDate.setHours(currentDate.getHours()+5);
+		currentDate.setMinutes(currentDate.getMinutes()+29);
 		if(startDateTime.before(currentDate)) {
 			throw new CustomIllegalArgumentException("Start Date and Time cannot be a past value");
 		}

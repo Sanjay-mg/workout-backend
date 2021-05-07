@@ -46,4 +46,13 @@ public class WorkoutService {
 	public List<Workout> getWorkoutByStatus(STATUS status) {
 		return workoutRepository.findByStatus(status);
 	}
+	
+	public WorkoutRepository getWorkoutRepository() {
+		return workoutRepository;
+	}
+
+	public void setWorkoutRepository(WorkoutRepository workoutRepository) {
+		this.workoutRepository = workoutRepository;
+	}
+
 }
