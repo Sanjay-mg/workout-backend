@@ -55,4 +55,8 @@ public class WorkoutService {
 		this.workoutRepository = workoutRepository;
 	}
 
+	public List<Workout> getWorkoutsByDateTillDate(Date startDateTime) {
+		Date endDate = new Date();
+		return workoutRepository.findByStartDateTimeBetween(startDateTime,endDate);
+	}
 }
