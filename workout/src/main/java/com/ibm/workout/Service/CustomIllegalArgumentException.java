@@ -16,7 +16,7 @@ public class CustomIllegalArgumentException extends IllegalArgumentException{
 	}
 
 	@ExceptionHandler(value = { CustomIllegalArgumentException.class, IllegalArgumentException.class })
-	public ResponseEntity<Object> handleconflict(Exception ex, WebRequest request) {
+	public ResponseEntity<Object> handleconflict(CustomIllegalArgumentException ex, WebRequest request) {
 		String errorMsg= new String(" ");
 		errorMsg += ex.getLocalizedMessage();
 		
