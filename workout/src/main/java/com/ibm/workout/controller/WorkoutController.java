@@ -76,6 +76,13 @@ public class WorkoutController {
 	}
 
 	@CrossOrigin
+	@GetMapping("/workout/date/{date}")
+	List<Workout> getWorkoutsByDateTillDate(
+			@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") Date startDateTime) {
+		return workoutService.getWorkoutsByDateTillDate(startDateTime);
+	}
+	
+	@CrossOrigin
 	@GetMapping("/workout/status/{status}")
 	List<Workout> getWorkoutByStatus(@PathVariable("status") STATUS status) {
 		return workoutService.getWorkoutByStatus(status);
