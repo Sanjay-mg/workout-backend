@@ -61,10 +61,10 @@ public class Workout {
 			return;
 		}
 		Date currentDate = new Date();
-		currentDate.setHours(currentDate.getHours()+5);
-		currentDate.setMinutes(currentDate.getMinutes()+29);
-		if(endDateTime.before(currentDate)) {
-			throw new CustomIllegalArgumentException("End Date and Time cannot be a past value");
+//		currentDate.setHours(currentDate.getHours()+5);
+//		currentDate.setMinutes(currentDate.getMinutes()+29);
+		if(endDateTime.after(currentDate)) {
+			throw new CustomIllegalArgumentException("End Date and Time cannot be a future value");
 		}
 		this.endDateTime = endDateTime;
 	}
@@ -75,8 +75,8 @@ public class Workout {
 		Date currentDate = new Date();
 //		currentDate.setHours(currentDate.getHours()+5);
 //		currentDate.setMinutes(currentDate.getMinutes()+29);
-		if(startDateTime.before(currentDate)) {
-			throw new CustomIllegalArgumentException("Start Date and Time cannot be a past value");
+		if(startDateTime.after(currentDate)) {
+			throw new CustomIllegalArgumentException("Start Date and Time cannot be a future value");
 		}
 		this.startDateTime = startDateTime;
 	}
