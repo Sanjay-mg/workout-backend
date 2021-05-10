@@ -45,6 +45,12 @@ public class Workout {
 		return caloriesBurnt;
 	}
 	public void setCaloriesBurnt(float caloriesBurnt) {
+		if(caloriesBurnt>100) {
+			throw new CustomIllegalArgumentException("Calorie Burnt per minute cannot be more that 100");
+		}
+		if(caloriesBurnt<0) {
+			throw new CustomIllegalArgumentException("Calorie Burnt per minute cannot be negative value");
+		}
 		this.caloriesBurnt = caloriesBurnt;
 	}
 	public String getNote() {
