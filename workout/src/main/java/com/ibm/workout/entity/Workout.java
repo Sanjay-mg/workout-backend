@@ -72,6 +72,9 @@ public class Workout {
 		return startDateTime;
 	}
 	public void setStartDateTime(Date startDateTime) {
+		if(startDateTime==null) {
+			return;
+		}
 		Date currentDate = new Date();
 //		currentDate.setHours(currentDate.getHours()+5);
 //		currentDate.setMinutes(currentDate.getMinutes()+29);
