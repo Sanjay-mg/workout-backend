@@ -34,6 +34,9 @@ public class WorkoutService {
 
 	public List<Workout> getWorkoutByDate(Date startDateTime) {
 		Date endDate = new Date();
+		if(startDateTime.after(endDate)) {
+			throw new CustomIllegalArgumentException("Date cannot be a future date");
+		}
 		endDate.setDate(startDateTime.getDate());
 		endDate.setMonth(startDateTime.getMonth());
 		endDate.setYear(startDateTime.getYear());
@@ -57,6 +60,9 @@ public class WorkoutService {
 
 	public List<Workout> getWorkoutsByDateTillDate(Date startDateTime) {
 		Date endDate = new Date();
+		if(startDateTime.after(endDate)) {
+			throw new CustomIllegalArgumentException("Date cannot be a future date");
+		}
 		return workoutRepository.findByStartDateTimeBetween(startDateTime,endDate);
 	}
 }
