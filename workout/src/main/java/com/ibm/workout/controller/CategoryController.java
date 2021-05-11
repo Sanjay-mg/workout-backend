@@ -45,8 +45,7 @@ public class CategoryController {
 		if (bindingResult.hasErrors()) {
 			throw new IllegalArgumentException("Something went wrong. Please retry");
 		}
-	}
-
+	}//made a simple change
 	/**
 	 * Used to get all the categories in database
 	 * 
